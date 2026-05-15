@@ -2,12 +2,6 @@
 
 Keychain resource for VORP inventory. Your players have too many keys in their pocket? Collect them inside a keychain! 
 
-Keychain features:
-
-- the container is a keychain custom inventory
-- the container only accepts configured key items
-- even if the keychain is dropped or passed the keys will last in the last position
-
 ## Features
 
 - Uses a normal inventory item as the keychain opener (`Config.KeychainItem`)
