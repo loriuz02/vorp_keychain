@@ -1,4 +1,4 @@
-Locales['en_lang'] = {
+Locales['en'] = {
     KeychainID = 'Keychain ID: ',
     OnlyKeysAllowed = 'Only keys can be stored in this keychain.',
     MissingItemIdMetadata = 'Unable to assign keychain metadata. Re-add the keychain item.',

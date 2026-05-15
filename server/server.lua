@@ -80,21 +80,22 @@ local function ensureKeychainInventoryRegistered(invId)
 end
 
 local function assignKeychainMetadata(source, data)
-    local metadata = data.metadata or {}
+    debugPrint('Assigning keychain metadata for item. source=' .. tostring(source) .. ' data=' .. json.encode(data or {}))
+    local metadata = data.item.metadata or {}
     if metadata.keychainid and tostring(metadata.keychainid) ~= '' then
         return tostring(metadata.keychainid), metadata
     end
 
-    local keychainId = buildKeychainId(source, data.id)
+    local keychainId = buildKeychainId(source, data.item.id)
     metadata.keychainid = keychainId
     metadata.description = _U('KeychainID') .. keychainId
 
-    if data.id then
-        local stackAmount = data.count or 1
-        exports.vorp_inventory:setItemMetadata(source, data.id, metadata, stackAmount)
+    if data.item.id then
+        local stackAmount = data.item.count or 1
+        exports.vorp_inventory:setItemMetadata(source, data.item.id, metadata, stackAmount)
     else
         VORPcore.NotifyRightTip(source, _U('MissingItemIdMetadata'), 4000)
-        debugPrint('Cannot set metadata on keychain item because data.id is missing.')
+        debugPrint('Cannot set metadata on keychain item because data.item.id is missing.')
     end
 
     return keychainId, metadata
@@ -109,7 +110,7 @@ exports.vorp_inventory:registerUsableItem(Config.KeychainItem, function(data)
         return
     end
 
-    keychainId = data.metadata and data.metadata.keychainid
+    keychainId = data.item.metadata and data.item.metadata.keychainid
     if not keychainId or tostring(keychainId) == '' then
         keychainId = select(1, assignKeychainMetadata(source, data))
     end
