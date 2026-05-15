@@ -24,7 +24,7 @@ Keychain features:
 ## Installation
 
 1. Place this folder in your server resources.
-2. Run the SQL file [install/keychain_item.sql](install/keychain_item.sql) in your database to add the keychain item.
+2. Run the SQL file [install/keychain_item.sql](install/keychain_item.sql) in your database to add the keychain item. (Optional if you create the item manually)
 3. Ensure your key items exist in the items table (`house_key`, `wagon_key`, `business_key` by default).
 4. Edit `config.lua` for your server item names and limits.
 5. Add to your server config:
@@ -58,6 +58,6 @@ If a value is `true`, `Config.DefaultKeyLimit` is used.
 ## Notes
 
 - This version does not attach any backpack model to the player.
-- No SQL table is required for keychain storage ids.
+- No SQL table is required for keychain storage ids. If you don't know how to add items to the database you can use the created sql.
 - Keychain ids are stored directly on the keychain item metadata.
 
